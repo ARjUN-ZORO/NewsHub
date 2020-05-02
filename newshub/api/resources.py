@@ -31,12 +31,37 @@ class Page(Resource):
         skip = (page-1)*20
         limit=20
         ps = []
-        page_con = db.db.page_data
+        page_con = db.db.pages
         if page_con:
+            tot = db.db.pages.count(filter=None)
             for i in page_con.find(skip=skip,limit=limit,sort=sort):
                 # print(i)
                 ps.append(jj(i))
             prv_link = '/api/latest_news?page=' + str(page - 1)
             nxt_link = '/api/latest_news?page=' + str(page + 1)
-            return {'prv_link':prv_link,'nxt_link':nxt_link,'out':ps}
+            return {'tot':tot,'prv_link':prv_link,'nxt_link':nxt_link,'out':ps}
+        return {'message': "Something's wrong i can feel it" }, 404
+
+class Page_by_cat(Resource):
+
+    def get(self):
+        cat = request.args['cat']
+        # page = int(request.args['page'])
+        page = 1
+        date = datetime.datetime.now(pytz.timezone('Asia/Calcutta')) + datetime.timedelta(days = 0)
+        date = date.strftime('%B %d, %Y')
+        filter={'section_name':'\n'+cat+'\n'}
+        sort=list({'_id': -1}.items())
+        skip = (page-1)*20
+        limit=20
+        ps = []
+        page_con = db.db.pages
+        if page_con:
+            tot = db.db.pages.count(filter=filter)
+            for i in page_con.find(skip=skip,limit=limit,sort=sort,filter=filter):
+                # print(i)
+                ps.append(jj(i))
+            prv_link = '/api/latest_news?page=' + str(page - 1)
+            nxt_link = '/api/latest_news?page=' + str(page + 1)
+            return {'tot':tot,'prv_link':prv_link,'nxt_link':nxt_link,'out':ps}
         return {'message': "Something's wrong i can feel it" }, 404
