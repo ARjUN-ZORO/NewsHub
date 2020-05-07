@@ -1,0 +1,65 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: black;
+}
+
+header {
+  background-color: #5f788a;
+  height: 35px;
+  width: 100%;
+  opacity: .9;
+  margin-bottom: 10px;
+}
+
+.logo {
+  margin: 0;
+  font-size: 1.7em;
+  color: #fff;
+  text-transform: uppercase;
+  float: left;
+}
+
+header h1.logo:hover {
+  color: #fff;
+  text-decoration: none;
+}
+
+.container {
+  width: 1200px;
+  margin: 0 auto;
+}
+
+div.home {
+  padding: 10px 0 30px 0;
+  -webkit-border-radius: 6px;
+     -moz-border-radius: 6px;
+          border-radius: 6px;
+}
+
+div.about {
+  padding: 10px 0 30px 0;
+  -webkit-border-radius: 6px;
+     -moz-border-radius: 6px;
+          border-radius: 6px;
+}
+
+
+.menu {
+  float: right;
+  margin-top: 8px;
+}
+
+.menu li {
+  display: inline;
+}
+
+.menu li + li {
+  margin-left: 35px;
+}
+
+.menu li a {
+  color: Black;
+  text-decoration: none;
+}

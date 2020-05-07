@@ -1,6 +1,6 @@
 from flask_restful import Api
 
-from .db import db
+from .db import mon_db
 from .resources import Page, Page_by_cat, Page_search
 
 api = Api()

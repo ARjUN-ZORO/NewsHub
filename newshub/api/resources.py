@@ -2,8 +2,8 @@ from flask_restful import Resource, reqparse
 from flask import jsonify, request
 import re, datetime, pytz, urllib
 # from .models import PageModel
-from .db import db
-
+from .db import mon_db
+page_con = mon_db.db.page_data
 def jj(obj):
     ret = {}
     ret["_id"] = str(obj['_id'])
@@ -52,7 +52,7 @@ class Page(Resource):
         skip = (page-1)*20
         limit=20
         ps = []
-        page_con = db.db.pages
+        # page_con = mon_db.db.pages
         if page_con:
             tot = page_con.count(filter=None)
             for i in page_con.find(skip=skip,limit=limit,sort=sort,filter=None):
@@ -88,7 +88,7 @@ class Page_by_cat(Resource):
         skip = (page-1)*20
         limit=20
         ps = []
-        page_con = db.db.pages
+        # page_con = mon_db.db.pages
         if page_con:
             tot = page_con.count(filter=filter)
             for i in page_con.find(skip=skip,limit=limit,sort=sort,filter=filter):
@@ -124,7 +124,7 @@ class Page_search(Resource):
         skip = (page-1)*20
         limit=20
         ps = []
-        page_con = db.db.pages
+        # page_con = db.db.pages
         if page_con:
             tot = page_con.count(filter=filter)
             for i in page_con.find(skip=skip,limit=limit,sort=sort,filter=filter):
