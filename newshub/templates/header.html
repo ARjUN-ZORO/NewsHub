@@ -11,8 +11,8 @@
     {% endif %}
   </head>
   <body>
-        <header class="site-header">
-          <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+        
+          <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark ">
             <div class="container">
               <a class="navbar-brand mr-4" href="/">NEWSHUB</a>
               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
@@ -37,9 +37,9 @@
             </div>
           </nav>
         </header>
-        <main role="main" class="container">
-          <div class="row">
-            <div class="col-md-8">
+        <main role="main" class="container-fluid">
+          <div class="row container-fluid">
+            <div class="container-fluid">
               {% with messages = get_flashed_messages(with_categories=true) %}
                 {% if messages %}
                   {% for category, message in messages %}
@@ -51,7 +51,7 @@
               {% endwith %}
               {% block content %}{% endblock %}
             </div>
-            
+
           </div>
         </main>
       <!-- Optional JavaScript -->
