@@ -4,6 +4,7 @@ import re, datetime, pytz, urllib
 # from .models import PageModel
 from .db import mon_db
 page_con = mon_db.db.pages
+# page_con = mon_db.db.page_data
 def jj(obj):
     ret = {}
     ret["_id"] = str(obj['_id'])
@@ -21,17 +22,11 @@ def jj(obj):
     return ret
 
 def page_args(page):
-    if page == None:
-        page = 1
     return page
 def cat_arg(page,cat):
-    if page == None:
-        page = 1
     return {'page':page,'cat':cat}
 
 def find_arg(page,find):
-    if page == None:
-        page = 1
     return {'page':page,'find':find}
 
 class Page(Resource):
@@ -41,7 +36,8 @@ class Page(Resource):
         parser.add_argument('page',
                         type=int,
                         required=False,
-                        help="Page Num"
+                        help="Page Num",
+                        default=1
                         )
         data = parser.parse_args()
         page = page_args(**data)
@@ -60,7 +56,8 @@ class Page(Resource):
                 ps.append(jj(i))
             prv_link = '/api/latest_news?page=' + str(page - 1)
             nxt_link = '/api/latest_news?page=' + str(page + 1)
-            return {'tot':tot,'pagenum':page,'prv_link':prv_link,'nxt_link':nxt_link,'out':ps}
+            pages = tot/20
+            return {'tot':tot,'pagenum':page,'tot_pages':pages,'prv_link':prv_link,'nxt_link':nxt_link,'out':ps}
         return {'message': "Something's wrong i can feel it" }, 666
 
 class Page_by_cat(Resource):
@@ -75,7 +72,8 @@ class Page_by_cat(Resource):
         parser.add_argument('page',
                         type=int,
                         required=False,
-                        help="Page Num"
+                        help="Page Num",
+                        default=1
                         )
         data = parser.parse_args()
         cat_args = cat_arg(**data)
@@ -111,7 +109,8 @@ class Page_search(Resource):
         parser.add_argument('page',
                         type=int,
                         required=False,
-                        help="Page Num"
+                        help="Page Num",
+                        default=1
                         )
         data = parser.parse_args()
         find_args = find_arg(**data)

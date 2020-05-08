@@ -15,8 +15,9 @@
         <div class="col-10 container-fluid">
             <div class="container">
                 <div class="card-columns">
-
-
+                    tot = {{news_data['tot']}}
+                    pgn = {{news_data['pagenum']}}
+                    totpg = {{news_data['tot_pages']}}
                     {% for news in news_data.out %}
                     <!-- {{news}} -->
                     <div class="card" style="width: 18rem;">

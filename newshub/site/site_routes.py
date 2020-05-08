@@ -8,16 +8,19 @@ import requests
 site_bp = Blueprint('site_bp',__name__)
 
 @site_bp.route('/')
+@site_bp.route('/index')
+@site_bp.route('/home')
 def index():
-    # data = User.query.first()
-    news_data = requests.get('http://localhost:5000/api/latest_news')
+    page = request.args.get('page',type=int,default=1)
+    print(request.remote_addr)
+    news_data = requests.get('http://localhost:5000/api/latest_news?page='+str(page))
     return render_template('home.html',news_data=news_data.json())
 
 @site_bp.route('/about')
-@login_required
+# @login_required
 def about():
-    data = User.query.first()
-    return current_user.username
+    # data = User.query.first()
+    return "current_user.username"
 
 @site_bp.route('/login',methods=['GET','POST'])
 def login():

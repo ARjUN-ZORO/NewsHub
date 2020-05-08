@@ -1,4 +1,4 @@
-from newshub import create_app 
+from newshub import create_app
 
 app = create_app()
 
