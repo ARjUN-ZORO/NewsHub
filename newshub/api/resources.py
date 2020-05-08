@@ -3,7 +3,7 @@ from flask import jsonify, request
 import re, datetime, pytz, urllib
 # from .models import PageModel
 from .db import mon_db
-page_con = mon_db.db.page_data
+page_con = mon_db.db.pages
 def jj(obj):
     ret = {}
     ret["_id"] = str(obj['_id'])

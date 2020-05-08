@@ -3,14 +3,15 @@ from flask_login import login_user, current_user, logout_user, login_required
 from newshub import pos_db, bcrypt
 from newshub.site.models import User
 from newshub.site.forms import LoginForm, RegisterForm, UpdateAccountForm
-
+import requests
 
 site_bp = Blueprint('site_bp',__name__)
 
 @site_bp.route('/')
 def index():
-    data = User.query.first()
-    return render_template('home.html')
+    # data = User.query.first()
+    news_data = requests.get('http://localhost:5000/api/latest_news')
+    return render_template('home.html',news_data=news_data.json())
 
 @site_bp.route('/about')
 @login_required
