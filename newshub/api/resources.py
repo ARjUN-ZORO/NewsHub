@@ -1,6 +1,6 @@
 from flask_restful import Resource, reqparse
 from flask import jsonify, request
-import re, datetime, pytz, urllib
+import re, datetime, pytz, urllib, math
 # from .models import PageModel
 from .db import mon_db
 page_con = mon_db.db.pages
@@ -22,6 +22,8 @@ def jj(obj):
     return ret
 
 def page_args(page):
+    if page < 1:
+        page = 1
     return page
 def cat_arg(page,cat):
     return {'page':page,'cat':cat}
@@ -56,7 +58,7 @@ class Page(Resource):
                 ps.append(jj(i))
             prv_link = '/api/latest_news?page=' + str(page - 1)
             nxt_link = '/api/latest_news?page=' + str(page + 1)
-            pages = tot/20
+            pages = math.ceil(tot/20)
             return {'tot':tot,'pagenum':page,'tot_pages':pages,'prv_link':prv_link,'nxt_link':nxt_link,'out':ps}
         return {'message': "Something's wrong i can feel it" }, 666
 

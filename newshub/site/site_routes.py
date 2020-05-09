@@ -11,6 +11,12 @@ site_bp = Blueprint('site_bp',__name__)
 @site_bp.route('/index')
 @site_bp.route('/home')
 def index():
+    # if request.headers.getlist("X-Forwarded-For"):
+    #     ip = request.headers.getlist("X-Forwarded-For")[0]
+    # else:
+    #     ip = request.remote_addr
+    # url = 'https://ipinfo.io/'+str(ip)+'/json?token=b579f4931aac3b'
+    # loc = requests.get(url)
     page = request.args.get('page',type=int,default=1)
     print(request.remote_addr)
     news_data = requests.get('http://localhost:5000/api/latest_news?page='+str(page))

@@ -13,28 +13,43 @@
         </div>
 
         <div class="col-10 container-fluid">
-            <div class="container">
-                <div class="card-columns">
-                    tot = {{news_data['tot']}}
-                    pgn = {{news_data['pagenum']}}
-                    totpg = {{news_data['tot_pages']}}
-                    {% for news in news_data.out %}
-                    <!-- {{news}} -->
-                    <div class="card" style="width: 18rem;">
-                        <img class="card-img-top" src="{{news['img_url']}}" alt="NO Image" onerror="this.src='{{ url_for('static',filename='img/nh.PNG') }}'" >
-                        <div class="card-body">
-                            <h5 class="card-title"></h5>
-                            <p class="card-text">{{news['title']}}</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
+            {% if news_data['pagenum'] > 1 %}
+
+            <a class="btn btn-primary" href="">
+                < </a>
+
+                    {% endif %}
+                    {% if news_data['pagenum'] < news_data['tot_pages'] %}
+
+                    <a class="btn btn-primary" href="">
+                        > </a>
+
+                            {% endif %}
+                    <div class="container">
+                        <div class="card-columns">
+                            tot = {{news_data['tot']}}
+                            pgn = {{news_data['pagenum']}}
+                            totpg = {{news_data['tot_pages']}}
+                            {% for news in news_data.out %}
+                            <!-- {{news}} -->
+                            <div class="card" style="width: 18rem;">
+                                <img class="card-img-top" src="{{news['img_url']}}" alt="NO Image" onerror="this.src='{{ url_for('static',filename='img/nh.PNG') }}'">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{news['title']}}</h5>
+                                    <p class="card-text">{{news['description']}}</p>
+                                    <a href="#" class="btn btn-primary">View Article</a>
+                                    {%set time = news['post_time'].split()%}
+                                    {{time[3]}}{{time[0]}}{{time[1]}}{{time[2]}}
+                                    {{news['place']}}{{news['section_name']}}
+                                </div>
+                            </div>
+
+                            <!-- {{ news_data }} -->
+                            {% endfor %}
+
                         </div>
+
                     </div>
-
-                    <!-- {{ news_data }} -->
-                    {% endfor %}
-
-                </div>
-
-            </div>
 
         </div>
     </div>
