@@ -4,6 +4,7 @@
     <title>My Flask APP</title>
     <link rel="stylesheet" href="{{ url_for('static',filename='css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ url_for('static',filename='css/main.css') }}">
+
     {% if title%}
     <title>NewsHUB - {{title}}</title>
     {% else %}

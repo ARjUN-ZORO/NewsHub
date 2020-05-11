@@ -26,7 +26,7 @@ def index():
 # @login_required
 def about():
     # data = User.query.first()
-    return "current_user.username"
+    return render_template('lazy.html',title="lazy",error="eeerr")
 
 @site_bp.route('/login',methods=['GET','POST'])
 def login():

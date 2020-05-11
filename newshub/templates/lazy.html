@@ -1,0 +1,96 @@
+{%extends "header.html"%}
+{%block content%}
+<div class="home container-fluid">
+    <div class="jumbotron">
+        <h1>Bootstrap Tutorial</h1>
+        <p>Bootstrap is the most popular HTML, CSS...</p>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-2">
+
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
+            aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </div>
+
+        <div class="col-sm-10 container-fluid">
+
+            <div class="container">
+                <!-- <div class="card-columns"> -->
+                    <div id="scroller">
+
+
+<template id="post_template">
+    <div class="container-fluid">
+
+
+                    <div class="media rounded border mb-3">
+                        <!-- <img class="align-self-start img-thumbnail mr-3 w-25 h-25" style="max-height: 5rem; max-width: 5rem; min-height: 5rem; min-width: 5rem;" src="" alt="NO Image" id="img" onerror="this.src='{{ url_for('static',filename='img/nh.PNG') }}'"> -->
+                        <!-- <img class="img-fluid mh-100 mw-100" style="width: 200px; height: 200px;" src="" alt="NO Image" id="img" onerror="this.src='{{ url_for('static',filename='img/nh.PNG') }}'"> -->
+                        <div class="wrapper">
+                          <img class="card-img-top img-responsive img-fluid align-self-start media-img" src="" id="img" onerror="this.src='{{ url_for('static',filename='img/nh.PNG') }}'"/>
+                        </div>
+                        <div class="media-body">
+                            <h5 class="mt-2" id="title"></h5>
+                            <p class="" id="content"></p>
+                            <!-- <a href="#" class="btn btn-primary">View Article</a> -->
+                             <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
+                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                        </div>
+                        <div class="card-footer text-muted">
+    2 days ago
+  </div>
+                    </div>
+</div>
+</template>
+</div>
+                </div>
+                <div class="d-flex justify-content-center mb-3" id="sentinel">
+                    <div class="spinner-border" role="status">
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+<script>
+    var scroller = document.querySelector('#scroller');
+    var template = document.querySelector('#post_template');
+    // var loaded = document.querySelector('');
+    var sentinel = document.querySelector('#sentinel');
+    var page = 1;
+
+    function loadItems() {
+        fetch('http://127.0.0.1:5000/api/latest_news?page=' + page).then((response) => {
+            response.json().then((data) => {
+                // console.log(data.out[0]['_id']);
+
+                if (!data.out.length) {
+                    sentinel.innerHTML = "Nothing More To See"
+                }
+
+                for (var i = 0; i < data.out.length; i++){
+                    // console.log(data.out[i]['title']);
+                    let template_clone = template.content.cloneNode(true);
+                    template_clone.querySelector('#img').src = data.out[i]['img_url'];
+                    template_clone.querySelector('#title').innerHTML = data.out[i]['title'];
+                    template_clone.querySelector('#content').innerHTML = data.out[i]['description'];
+                    scroller.appendChild(template_clone);
+                    // laoded
+                }
+                page += 1
+            })
+        })
+    }
+
+    var intersectionObserver = new IntersectionObserver(entries => {
+        if (entries[0].intersectionRatio <= 0) {
+            return;
+        }
+        loadItems();
+    });
+    intersectionObserver.observe(sentinel);
+</script>
+{%endblock%}
