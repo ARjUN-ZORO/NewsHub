@@ -17,43 +17,43 @@
 
             <div class="container">
                 <!-- <div class="card-columns"> -->
-                    <div id="scroller">
+                <div id="scroller">
 
 
-<template id="post_template">
-    <div class="container-fluid">
+                    <template id="post_template">
+                        <div class="container-fluid">
 
 
-                    <div class="media rounded border mb-3">
-                        <!-- <img class="align-self-start img-thumbnail mr-3 w-25 h-25" style="max-height: 5rem; max-width: 5rem; min-height: 5rem; min-width: 5rem;" src="" alt="NO Image" id="img" onerror="this.src='{{ url_for('static',filename='img/nh.PNG') }}'"> -->
-                        <!-- <img class="img-fluid mh-100 mw-100" style="width: 200px; height: 200px;" src="" alt="NO Image" id="img" onerror="this.src='{{ url_for('static',filename='img/nh.PNG') }}'"> -->
-                        <div class="wrapper">
-                          <img class="card-img-top img-responsive img-fluid align-self-start media-img" src="" id="img" onerror="this.src='{{ url_for('static',filename='img/nh.PNG') }}'"/>
+                            <div class="media rounded border mb-3">
+                                <!-- <img class="align-self-start img-thumbnail mr-3 w-25 h-25" style="max-height: 5rem; max-width: 5rem; min-height: 5rem; min-width: 5rem;" src="" alt="NO Image" id="img" onerror="this.src='{{ url_for('static',filename='img/nh.PNG') }}'"> -->
+                                <!-- <img class="img-fluid mh-100 mw-100" style="width: 200px; height: 200px;" src="" alt="NO Image" id="img" onerror="this.src='{{ url_for('static',filename='img/nh.PNG') }}'"> -->
+                                <div class="wrapper">
+                                    <img class="card-img-top img-responsive img-fluid align-self-start media-img" src="" id="img" onerror="this.src='{{ url_for('static',filename='img/nh.PNG') }}'" />
+                                </div>
+                                <div class="media-body">
+                                    <h5 class="mt-2" id="title"></h5>
+                                    <p class="" id="content"></p>
+                                    <!-- <a href="#" class="btn btn-primary">View Article</a> -->
+                                    <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
+                                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                </div>
+                                <div class="card-footer text-muted">
+                                    2 days ago
+                                </div>
+                            </div>
                         </div>
-                        <div class="media-body">
-                            <h5 class="mt-2" id="title"></h5>
-                            <p class="" id="content"></p>
-                            <!-- <a href="#" class="btn btn-primary">View Article</a> -->
-                             <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
-                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                        </div>
-                        <div class="card-footer text-muted">
-    2 days ago
-  </div>
-                    </div>
-</div>
-</template>
-</div>
-                </div>
-                <div class="d-flex justify-content-center mb-3" id="sentinel">
-                    <div class="spinner-border" role="status">
-
-                    </div>
+                    </template>
                 </div>
             </div>
+            <div class="d-flex justify-content-center mb-3" id="sentinel">
+                <div class="spinner-border" role="status">
 
+                </div>
+            </div>
         </div>
+
     </div>
+</div>
 
 <script>
     var scroller = document.querySelector('#scroller');
@@ -71,7 +71,7 @@
                     sentinel.innerHTML = "Nothing More To See"
                 }
 
-                for (var i = 0; i < data.out.length; i++){
+                for (var i = 0; i < data.out.length; i++) {
                     // console.log(data.out[i]['title']);
                     let template_clone = template.content.cloneNode(true);
                     template_clone.querySelector('#img').src = data.out[i]['img_url'];
