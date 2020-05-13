@@ -43,7 +43,7 @@
             <div class="container">
                 <div class="card-columns">
                     {% for news in news_data.out %}
-                    <!-- {{news}} -->
+                    
                     <div class="card" style="width: 100%;">
 
                         <img class="card-img-top" src="{{news['img_url']}}" alt="NO Image" onerror="this.src='{{ url_for('static',filename='img/nh.PNG') }}'">
@@ -62,7 +62,7 @@
   </div>
                     </div>
 
-                    
+
                     {% endfor %}
 
                 </div>
