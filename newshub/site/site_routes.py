@@ -23,9 +23,7 @@ def index():
     return render_template('home.html',news_data=news_data.json())
 
 @site_bp.route('/about')
-# @login_required
 def about():
-    # data = User.query.first()
     return render_template('lazy.html',title="lazy",error="eeerr")
 
 @site_bp.route('/login',methods=['GET','POST'])
