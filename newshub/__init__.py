@@ -19,7 +19,6 @@ def create_app():
     bcrypt.init_app(app)
     pos_db.init_app(app)
     from newshub.data.scrape_data import scrape
-    # print(scrape())
     login_manager.init_app(app)
     from newshub.site.site_routes import site_bp
     app.register_blueprint(site_bp)
