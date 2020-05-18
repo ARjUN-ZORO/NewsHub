@@ -54,13 +54,11 @@ def logout():
 
 @site_bp.route('/register',methods=['GET','POST'])
 def register():
-    print("1")
     if current_user.is_authenticated:
         return redirect("login")
     form = RegisterForm()
     if form.validate_on_submit():
         # Hash password
-        print("2")
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode(
             "utf-8"
         )
