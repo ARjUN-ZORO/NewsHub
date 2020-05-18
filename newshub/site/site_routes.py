@@ -74,10 +74,8 @@ def register():
         # Save user to db
         db.session.add(user)
         db.session.commit()
-        print("3")
         flash("Your account has been created. Please log in", "success")
         return redirect(url_for("site_bp.login"))
-    print("4")
     return render_template("register.html", title="Register", form=form)
 
 @site_bp.route("/account", methods=["GET", "POST"])
