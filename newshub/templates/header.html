@@ -41,6 +41,10 @@
         <main role="main" class="container-fluid">
           <div class="row container-fluid">
             <div class="container-fluid">
+
+              <br>
+              <br>
+              <br>
               {% with messages = get_flashed_messages(with_categories=true) %}
                 {% if messages %}
                   {% for category, message in messages %}
@@ -50,9 +54,6 @@
                   {% endfor %}
                 {% endif %}
               {% endwith %}
-              <br>
-              <br>
-              <br>
               {% block content %}{% endblock %}
             </div>
 
