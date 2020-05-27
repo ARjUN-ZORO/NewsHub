@@ -27,18 +27,18 @@
                             <div class="media rounded border mb-3">
                                 <!-- <img class="align-self-start img-thumbnail mr-3 w-25 h-25" style="max-height: 5rem; max-width: 5rem; min-height: 5rem; min-width: 5rem;" src="" alt="NO Image" id="img" onerror="this.src='{{ url_for('static',filename='img/nh.PNG') }}'"> -->
                                 <!-- <img class="img-fluid mh-100 mw-100" style="width: 200px; height: 200px;" src="" alt="NO Image" id="img" onerror="this.src='{{ url_for('static',filename='img/nh.PNG') }}'"> -->
-                                <div class="wrapper">
+                                <div class="wrapper"><a href="">
                                     <img class="card-img-top img-responsive img-fluid align-self-start media-img" src="" id="img" onerror="this.src='{{ url_for('static',filename='img/nh.PNG') }}'" />
-                                </div>
-                                <div class="media-body">
+                                </a></div>
+                                <div class="media-body"><a href="" class="stretched-link"></a>
                                     <h5 class="mt-2" id="title"></h5>
                                     <p class="" id="content"></p>
                                     <!-- <a href="#" class="btn btn-primary">View Article</a> -->
-                                    <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
-                                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                    <footer class="blockquote-footer" ><text title="Author" id="author"></text>,<cite title="Source Title" id="place"></cite></footer>
+                                    <p class="card-text"><small class="text-muted" title="Posted Time" id="time"></small></p>
                                 </div>
                                 <div class="card-footer text-muted">
-                                    20 days ago
+                                    <p title="Posted Time" class="" id="time2"></p>
                                 </div>
                             </div>
                         </div>
@@ -75,6 +75,10 @@
                     // console.log(data.out[i]['title']);
                     let template_clone = template.content.cloneNode(true);
                     template_clone.querySelector('#img').src = data.out[i]['img_url'];
+                    template_clone.querySelector('#time').innerHTML = data.out[i]['post_time'];
+                    template_clone.querySelector('#time2').innerHTML = data.out[i]['post_time'];
+                    template_clone.querySelector('#place').innerHTML = data.out[i]['place'];
+                    template_clone.querySelector('#author').innerHTML = data.out[i]['author_name'];
                     template_clone.querySelector('#title').innerHTML = data.out[i]['title'];
                     template_clone.querySelector('#content').innerHTML = data.out[i]['description'];
                     scroller.appendChild(template_clone);
