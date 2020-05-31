@@ -1,10 +1,13 @@
 from flask import Blueprint, render_template, flash, request, redirect, url_for
 from flask_login import login_user, current_user, logout_user, login_required
-from newshub import pos_db, bcrypt
+from newshub import pos_db, bcrypt, admin
 from newshub.site.models import User
 from newshub.site.forms import LoginForm, RegisterForm, UpdateAccountForm
 import requests
+from flask_admin.contrib.sqla import ModelView
 
+
+admin.add_view(ModelView(User,pos_db.session))
 site_bp = Blueprint('site_bp',__name__)
 
 @site_bp.route('/')

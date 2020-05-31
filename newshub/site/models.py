@@ -3,6 +3,7 @@ from datetime import datetime
 from flask_login import UserMixin
 from .settings import SECRET
 from flask import current_app
+from newshub.api.db import mon_db
 
 @login_manager.user_loader
 def load_user(user_id):

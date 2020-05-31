@@ -3,10 +3,12 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from flask_bcrypt import Bcrypt
 from newshub.settings import Config
+from flask_admin import Admin
 
 pos_db = SQLAlchemy()
 bcrypt = Bcrypt()
 login_manager = LoginManager()
+admin = Admin()
 
 
 login_manager.login_view = "site_bp.login"
@@ -32,5 +34,5 @@ def create_app():
     mon_db.init_app(app)
     from newshub.api.main import api
     api.init_app(app)
-
+    admin.init_app(app)
     return app
