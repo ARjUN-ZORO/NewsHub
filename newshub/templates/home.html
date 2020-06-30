@@ -43,13 +43,13 @@
             <div class="container">
                 <div class="card-columns">
                     {% for news in news_data.out %}
-                    
+
                     <div class="card" style="width: 100%;">
 
                         <img class="card-img-top" src="{{news['img_url']}}" alt="NO Image" onerror="this.src='{{ url_for('static',filename='img/nh.PNG') }}'">
                         <div class="card-body">
                             <h5 class="card-title">{{news['title']}}</h5>
-                            <p class="card-text">{{news['description']}}</p>
+                            <!-- <p class="card-text">{{news['description']}}</p> -->
                             <!-- <a href="#" class="btn btn-primary">View Article</a> -->
                             <!-- {%set time = news['post_time'].split()%}
                             {{time[3]}}{{time[0]}}{{time[1]}}{{time[2]}}

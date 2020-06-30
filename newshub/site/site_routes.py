@@ -4,10 +4,7 @@ from newshub import pos_db, bcrypt, admin
 from newshub.site.models import User
 from newshub.site.forms import LoginForm, RegisterForm, UpdateAccountForm
 import requests
-from flask_admin.contrib.sqla import ModelView
 
-
-admin.add_view(ModelView(User,pos_db.session))
 site_bp = Blueprint('site_bp',__name__)
 
 @site_bp.route('/')
@@ -75,8 +72,8 @@ def register():
             address=form.address.data,
         )
         # Save user to db
-        db.session.add(user)
-        db.session.commit()
+        pos_db.session.add(user)
+        pos_db.session.commit()
         flash("Your account has been created. Please log in", "success")
         return redirect(url_for("site_bp.login"))
     return render_template("register.html", title="Register", form=form)
@@ -94,7 +91,7 @@ def account():
         current_user.username = form.name.data
         current_user.email = form.email.data
         # current_user.profile_type = form.profile_type.data
-        db.session.commit()
+        pos_db.session.commit()
         flash("Your account has been updated!", "success")
         return redirect(url_for("site_bp.account"))
     elif request.method == "GET":

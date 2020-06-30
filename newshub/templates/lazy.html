@@ -32,14 +32,14 @@
                                 </a></div>
                                 <div class="media-body"><a href="" class="stretched-link"></a>
                                     <h5 class="mt-2" id="title"></h5>
-                                    <p class="" id="content"></p>
+                                    <!-- <p class="" id="content"></p> -->
                                     <!-- <a href="#" class="btn btn-primary">View Article</a> -->
                                     <footer class="blockquote-footer" ><text title="Author" id="author"></text>,<cite title="Source Title" id="place"></cite></footer>
                                     <p class="card-text"><small class="text-muted" title="Posted Time" id="time"></small></p>
                                 </div>
-                                <div class="card-footer text-muted">
+                                <!-- <div class="card-footer text-muted">
                                     <p title="Posted Time" class="" id="time2"></p>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </template>
@@ -76,11 +76,11 @@
                     let template_clone = template.content.cloneNode(true);
                     template_clone.querySelector('#img').src = data.out[i]['img_url'];
                     template_clone.querySelector('#time').innerHTML = data.out[i]['post_time'];
-                    template_clone.querySelector('#time2').innerHTML = data.out[i]['post_time'];
+                    // template_clone.querySelector('#time2').innerHTML = data.out[i]['post_time'];
                     template_clone.querySelector('#place').innerHTML = data.out[i]['place'];
                     template_clone.querySelector('#author').innerHTML = data.out[i]['author_name'];
                     template_clone.querySelector('#title').innerHTML = data.out[i]['title'];
-                    template_clone.querySelector('#content').innerHTML = data.out[i]['description'];
+                    // template_clone.querySelector('#content').innerHTML = data.out[i]['description'];
                     scroller.appendChild(template_clone);
                     // laoded
                 }

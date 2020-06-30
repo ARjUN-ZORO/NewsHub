@@ -25,7 +25,7 @@ def create_app():
     from newshub.site.site_routes import site_bp
     app.register_blueprint(site_bp)
 
-    from newshub.api.db import mon_db
+    from newshub.api.db import mon_db, db
     from newshub.api.settings import SECRET, MONGO_URI, MONGO_DBNAME, DEBUG
     app.debug = DEBUG
     app.config['SECRET_KEY'] = SECRET
@@ -35,4 +35,9 @@ def create_app():
     from newshub.api.main import api
     api.init_app(app)
     admin.init_app(app)
+    from flask_admin.contrib.sqla import ModelView
+    from newshub.api.models import pagesView
+    from newshub.site.models import User
+    # admin.add_view(pagesView(db.pages),'Feeds')
+    admin.add_view(ModelView(User,pos_db.session))
     return app
